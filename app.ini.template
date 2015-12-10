@@ -1,0 +1,318 @@
+# DO NOT EDIT!
+# This file will be replaced whenever the pod restarts
+
+; App name that shows on every page title
+APP_NAME = ${GOGS_APP_NAME}
+; Change it if you run locally
+RUN_USER = ${GOGS_RUN_USER}
+; Either "dev", "prod" or "test", default is "dev"
+RUN_MODE = ${GOGS_RUN_MODE}
+
+[repository]
+ROOT = ${GOGS_REPOSITORY__ROOT}
+SCRIPT_TYPE = ${GOGS_REPOSITORY__SCRIPT_TYPE}
+
+[ui]
+; Number of repositories that are showed in one explore page
+EXPLORE_PAGING_NUM = ${GOGS_UI__EXPLORE_PAGING_NUM}
+; Number of issues that are showed in one page
+ISSUE_PAGING_NUM = ${GOGS_UI__ISSUE_PAGING_NUM}
+; Number of maximum commits showed in one activity feed
+FEED_MAX_COMMIT_NUM = ${GOGS_UI__FEED_MAX_COMMIT_NUM}
+
+[ui.admin]
+; Number of users that are showed in one page
+USER_PAGING_NUM = ${GOGS_UI_ADMIN__USER_PAGING_NUM}
+; Number of repos that are showed in one page
+REPO_PAGING_NUM = ${GOGS_UI_ADMIN__REPO_PAGING_NUM}
+; Number of notices that are showed in one page
+NOTICE_PAGING_NUM = ${GOGS_UI_ADMIN__NOTICE_PAGING_NUM}
+; Number of organization that are showed in one page
+ORG_PAGING_NUM = ${GOGS_UI_ADMIN__ORG_PAGING_NUM}
+
+[markdown]
+; Enable hard line break extension
+ENABLE_HARD_LINE_BREAK = ${GOGS_MARKDOWN__ENABLE_HARD_LINE_BREAK}
+
+[server]
+PROTOCOL = ${GOGS_SERVER__PROTOCOL}
+DOMAIN = ${GOGS_SERVER__DOMAIN}
+ROOT_URL = ${GOGS_SERVER__ROOT_URL}
+HTTP_ADDR = ${GOGS_SERVER__HTTP_ADDR}
+HTTP_PORT = ${GOGS_SERVER__HTTP_PORT}
+; Disable SSH feature when not available
+DISABLE_SSH = ${GOGS_SERVER__DISABLE_SSH}
+SSH_PORT = ${GOGS_SERVER__SSH_PORT}
+; Disable CDN even in "prod" mode
+OFFLINE_MODE = ${GOGS_SERVER__OFFLINE_MODE}
+DISABLE_ROUTER_LOG = ${GOGS_SERVER__DISABLE_ROUTER_LOG}
+; Generate steps:
+; $ cd path/to/gogs/custom/https
+; $ ./gogs cert -ca=true -duration=8760h0m0s -host=myhost.example.com
+;
+; Or from a .pfx file exported from the Windows certificate store (do
+; not forget to export the private key):
+; $ openssl pkcs12 -in cert.pfx -out cert.pem -nokeys
+; $ openssl pkcs12 -in cert.pfx -out key.pem -nocerts -nodes
+CERT_FILE = ${GOGS_SERVER__CERT_FILE}
+KEY_FILE = ${GOGS_SERVER__KEY_FILE}
+; Upper level of template and static file path
+; default is the path where Gogs is executed
+STATIC_ROOT_PATH = ${GOGS_SERVER__STATIC_ROOT_PATH}
+; Application level GZIP support
+ENABLE_GZIP = ${GOGS_SERVER__ENABLE_GZIP}
+; Landing page for non-logged users, can be "home" or "explore"
+LANDING_PAGE = ${GOGS_SERVER__LANDING_PAGE}
+
+[database]
+; Either "mysql", "postgres" or "sqlite3", it's your choice
+DB_TYPE = ${GOGS_DATABASE__DB_TYPE}
+HOST = ${GOGS_DATABASE__HOST}
+NAME = ${GOGS_DATABASE__NAME}
+USER = ${GOGS_DATABASE__USER}
+PASSWD = ${GOGS_DATABASE__PASSWD}
+; For "postgres" only, either "disable", "require" or "verify-full"
+SSL_MODE = ${GOGS_DATABASE__SSL_MODE}
+; For "sqlite3" and "tidb"
+PATH = ${GOGS_DATABASE__PATH}
+
+[admin]
+
+[security]
+INSTALL_LOCK = ${GOGS_SECURITY__INSTALL_LOCK}
+; !!CHANGE THIS TO KEEP YOUR USER DATA SAFE!!
+SECRET_KEY = ${GOGS_SECURITY__SECRET_KEY}
+; Auto-login remember days
+LOGIN_REMEMBER_DAYS = ${GOGS_SECURITY__LOGIN_REMEMBER_DAYS}
+COOKIE_USERNAME = ${GOGS_SECURITY__COOKIE_USERNAME}
+COOKIE_REMEMBER_NAME = ${GOGS_SECURITY__COOKIE_REMEMBER_NAME}
+; Reverse proxy authentication header name of user name
+REVERSE_PROXY_AUTHENTICATION_USER = ${GOGS_SECURITY__REVERSE_PROXY_AUTHENTICATION_USER}
+
+[service]
+ACTIVE_CODE_LIVE_MINUTES = ${GOGS_SERVICE__ACTIVE_CODE_LIVE_MINUTES}
+RESET_PASSWD_CODE_LIVE_MINUTES = ${GOGS_SERVICE__RESET_PASSWD_CODE_LIVE_MINUTES}
+; User need to confirm e-mail for registration
+REGISTER_EMAIL_CONFIRM = ${GOGS_SERVICE__REGISTER_EMAIL_CONFIRM}
+; Does not allow register and admin create account only
+DISABLE_REGISTRATION = ${GOGS_SERVICE__DISABLE_REGISTRATION}
+; User must sign in to view anything.
+REQUIRE_SIGNIN_VIEW = ${GOGS_SERVICE__REQUIRE_SIGNIN_VIEW}
+; Cache avatar as picture
+ENABLE_CACHE_AVATAR = ${GOGS_SERVICE__ENABLE_CACHE_AVATAR}
+; Mail notification
+ENABLE_NOTIFY_MAIL = ${GOGS_SERVICE__ENABLE_NOTIFY_MAIL}
+; More detail: https://github.com/gogits/gogs/issues/165
+ENABLE_REVERSE_PROXY_AUTHENTICATION = ${GOGS_SERVICE__ENABLE_REVERSE_PROXY_AUTHENTICATION}
+ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = ${GOGS_SERVICE__ENABLE_REVERSE_PROXY_AUTO_REGISTRATION}
+; Do not check minimum key size with corresponding type
+DISABLE_MINIMUM_KEY_SIZE_CHECK = ${GOGS_SERVICE__DISABLE_MINIMUM_KEY_SIZE_CHECK}
+; Enable captcha validation for registration
+ENABLE_CAPTCHA = ${GOGS_SERVICE__ENABLE_CAPTCHA}
+
+[webhook]
+; Hook task queue length
+QUEUE_LENGTH = ${GOGS_WEBHOOK__QUEUE_LENGTH}
+; Deliver timeout in seconds
+DELIVER_TIMEOUT = ${GOGS_WEBHOOK__DELIVER_TIMEOUT}
+; Allow insecure certification
+SKIP_TLS_VERIFY = ${GOGS_WEBHOOK__SKIP_TLS_VERIFY}
+; Number of history information in each page
+PAGING_NUM = ${GOGS_WEBHOOK__PAGING_NUM}
+
+[mailer]
+ENABLED = ${GOGS_MAILER__ENABLED}
+; Buffer length of channel, keep it as it is if you don't know what it is.
+SEND_BUFFER_LEN = ${GOGS_MAILER__SEND_BUFFER_LEN}
+; Name displayed in mail title
+SUBJECT = ${GOGS_MAILER__SUBJECT}
+; Mail server
+; Gmail: smtp.gmail.com:587
+; QQ: smtp.qq.com:25
+; Note, if the port ends with "465", SMTPS will be used. Using STARTTLS on port 587 is recommended per RFC 6409. If the server supports STARTTLS it will always be used.
+HOST = ${GOGS_MAILER__HOST}
+; Disable HELO operation when hostname are different.
+DISABLE_HELO = ${GOGS_MAILER__DISABLE_HELO}
+; Custom hostname for HELO operation, default is from system.
+HELO_HOSTNAME = ${GOGS_MAILER__HELO_HOSTNAME}
+; Do not verify the certificate of the server. Only use this for self-signed certificates
+SKIP_VERIFY = ${GOGS_MAILER__SKIP_VERIFY}
+; Use client certificate
+USE_CERTIFICATE = ${GOGS_MAILER__USE_CERTIFICATE}
+CERT_FILE = ${GOGS_MAILER__CERT_FILE}
+KEY_FILE = ${GOGS_MAILER__KEY_FILE}
+; Mail from address, RFC 5322. This can be just an email address, or the `"Name" <email@example.com>` format 
+FROM = ${GOGS_MAILER__FROM}
+; Mailer user name and password
+USER = ${GOGS_MAILER__USER}
+PASSWD = ${GOGS_MAILER__PASSWD}
+
+[cache]
+; Either "memory", "redis", or "memcache", default is "memory"
+ADAPTER = ${GOGS_CACHE__ADAPTER}
+; For "memory" only, GC interval in seconds, default is 60
+INTERVAL = ${GOGS_CACHE__INTERVAL}
+; For "redis" and "memcache", connection host address
+; redis: network=tcp,addr=:6379,password=macaron,db=0,pool_size=100,idle_timeout=180
+; memcache: `127.0.0.1:11211`
+HOST = ${GOGS_CACHE__HOST}
+
+[session]
+; Either "memory", "file", "redis" or "mysql", default is "memory"
+PROVIDER = ${GOGS_SESSION__PROVIDER}
+; Provider config options
+; memory: not have any config yet
+; file: session file path, e.g. `data/sessions`
+; redis: network=tcp,addr=:6379,password=macaron,db=0,pool_size=100,idle_timeout=180
+; mysql: go-sql-driver/mysql dsn config string, e.g. `root:password@/session_table`
+PROVIDER_CONFIG = ${GOGS_SESSION__PROVIDER_CONFIG}
+; Session cookie name
+COOKIE_NAME = ${GOGS_SESSION__COOKIE_NAME}
+; If you use session in https only, default is false
+COOKIE_SECURE = ${GOGS_SESSION__COOKIE_SECURE}
+; Enable set cookie, default is true
+ENABLE_SET_COOKIE = ${GOGS_SESSION__ENABLE_SET_COOKIE}
+; Session GC time interval, default is 86400
+GC_INTERVAL_TIME = ${GOGS_SESSION__GC_INTERVAL_TIME}
+; Session life time, default is 86400
+SESSION_LIFE_TIME = ${GOGS_SESSION__SESSION_LIFE_TIME}
+
+[picture]
+; The place to picture data, either "server" or "qiniu", default is "server"
+SERVICE = ${GOGS_PICTURE__SERVICE}
+AVATAR_UPLOAD_PATH = ${GOGS_PICTURE__AVATAR_UPLOAD_PATH}
+; Chinese users can choose "duoshuo"
+; or a custom avatar source, like: http://cn.gravatar.com/avatar/
+GRAVATAR_SOURCE = ${GOGS_PICTURE__GRAVATAR_SOURCE}
+DISABLE_GRAVATAR = ${GOGS_PICTURE__DISABLE_GRAVATAR}
+
+[attachment]
+; Whether attachments are enabled. Defaults to `true`
+ENABLE = ${GOGS_ATTACHMENT__ENABLE}
+; Path for attachments. Defaults to `data/attachments`
+PATH = ${GOGS_ATTACHMENT__PATH}
+; One or more allowed types, e.g. image/jpeg|image/png
+ALLOWED_TYPES = ${GOGS_ATTACHMENT__ALLOWED_TYPES}
+; Max size of each file. Defaults to 32MB
+MAX_SIZE = ${GOGS_ATTACHMENT__MAX_SIZE}
+; Max number of files per upload. Defaults to 10
+MAX_FILES = ${GOGS_ATTACHMENT__MAX_FILES}
+
+[time]
+; Specifies the format for fully outputed dates. Defaults to RFC1123
+; Special supported values are ANSIC, UnixDate, RubyDate, RFC822, RFC822Z, RFC850, RFC1123, RFC1123Z, RFC3339, RFC3339Nano, Kitchen, Stamp, StampMilli, StampMicro and StampNano
+; For more information about the format see http://golang.org/pkg/time/#pkg-constants
+FORMAT = ${GOGS_TIME__FORMAT}
+
+[log]
+ROOT_PATH = ${GOGS_LOG__ROOT_PATH}
+; Either "console", "file", "conn", "smtp" or "database", default is "console"
+; Use comma to separate multiple modes, e.g. "console, file"
+MODE = ${GOGS_LOG__MODE}
+; Buffer length of channel, keep it as it is if you don't know what it is.
+BUFFER_LEN = ${GOGS_LOG__BUFFER_LEN}
+; Either "Trace", "Debug", "Info", "Warn", "Error", "Critical", default is "Trace"
+LEVEL = ${GOGS_LOG__LEVEL}
+
+; For "console" mode only
+[log.console]
+LEVEL = ${GOGS_LOG_CONSOLE__LEVEL}
+
+; For "file" mode only
+[log.file]
+LEVEL = ${GOGS_LOG_FILE__LEVEL}
+; This enables automated log rotate(switch of following options), default is true
+LOG_ROTATE = ${GOGS_LOG_FILE__LOG_ROTATE}
+; Max line number of single file, default is 1000000
+MAX_LINES = ${GOGS_LOG_FILE__MAX_LINES}
+; Max size shift of single file, default is 28 means 1 << 28, 256MB
+MAX_SIZE_SHIFT = ${GOGS_LOG_FILE__MAX_SIZE_SHIFT}
+; Segment log daily, default is true
+DAILY_ROTATE = ${GOGS_LOG_FILE__DAILY_ROTATE}
+; Expired days of log file(delete after max days), default is 7
+MAX_DAYS = ${GOGS_LOG_FILE__MAX_DAYS}
+
+; For "conn" mode only
+[log.conn]
+LEVEL = ${GOGS_LOG_CONN__LEVEL}
+; Reconnect host for every single message, default is false
+RECONNECT_ON_MSG = ${GOGS_LOG_CONN__RECONNECT_ON_MSG}
+; Try to reconnect when connection is lost, default is false
+RECONNECT = ${GOGS_LOG_CONN__RECONNECT}
+; Either "tcp", "unix" or "udp", default is "tcp"
+PROTOCOL = ${GOGS_LOG_CONN__PROTOCOL}
+; Host address
+ADDR = ${GOGS_LOG_CONN__ADDR}
+
+; For "smtp" mode only
+[log.smtp]
+LEVEL = ${GOGS_LOG_SMTP__LEVEL}
+; Name displayed in mail title, default is "Diagnostic message from serve"
+SUBJECT = ${GOGS_LOG_SMTP__SUBJECT}
+; Mail server
+HOST = ${GOGS_LOG_SMTP__HOST}
+; Mailer user name and password
+USER = ${GOGS_LOG_SMTP__USER}
+PASSWD = ${GOGS_LOG_SMTP__PASSWD}
+; Receivers, can be one or more, e.g. ["1@example.com","2@example.com"]
+RECEIVERS = ${GOGS_LOG_SMTP__RECEIVERS}
+
+; For "database" mode only
+[log.database]
+LEVEL = ${GOGS_LOG_DATABASE__LEVEL}
+; Either "mysql" or "postgres"
+DRIVER = ${GOGS_LOG_DATABASE__DRIVER}
+; Based on xorm, e.g.: root:root@localhost/gogs?charset=utf8
+CONN = ${GOGS_LOG_DATABASE__CONN}
+
+[cron]
+; Enable running cron tasks periodically.
+ENABLED = ${GOGS_CRON__ENABLED}
+; Run cron tasks when Gogs starts.
+RUN_AT_START = ${GOGS_CRON__RUN_AT_START}
+
+; Update mirrors
+[cron.update_mirrors]
+SCHEDULE = ${GOGS_CRON_UPDATE_MIRRORS__SCHEDULE}
+
+; Repository health check
+[cron.repo_health_check]
+SCHEDULE = ${GOGS_CRON_REPO_HEALTH_CHECK__SCHEDULE}
+; Arguments for command 'git fsck', e.g.: "--unreachable --tags"
+; see more on http://git-scm.com/docs/git-fsck/1.7.5
+ARGS = ${GOGS_CRON_REPO_HEALTH_CHECK__ARGS}
+
+; Check repository statistics
+[cron.check_repo_stats]
+RUN_AT_START = ${GOGS_CRON_CHECK_REPO_STATS__RUN_AT_START}
+SCHEDULE = ${GOGS_CRON_CHECK_REPO_STATS__SCHEDULE}
+
+[git]
+MAX_GIT_DIFF_LINES = ${GOGS_GIT__MAX_GIT_DIFF_LINES}
+; Arguments for command 'git gc', e.g.: "--aggressive --auto"
+; see more on http://git-scm.com/docs/git-gc/1.7.5
+GC_ARGS = ${GOGS_GIT__GC_ARGS}
+
+[i18n]
+LANGS = ${GOGS_I18N__LANGS}
+NAMES = ${GOGS_I18N__NAMES}
+
+; Used for datetimepicker
+[i18n.datelang]
+en-US = ${GOGS_I18N_DATELANG__en_US}
+zh-CN = ${GOGS_I18N_DATELANG__zh_CN}
+zh-HK = ${GOGS_I18N_DATELANG__zh_HK}
+de-DE = ${GOGS_I18N_DATELANG__de_DE}
+fr-FR = ${GOGS_I18N_DATELANG__fr_FR}
+nl-NL = ${GOGS_I18N_DATELANG__nl_NL}
+lv-LV = ${GOGS_I18N_DATELANG__lv_LV}
+ru-RU = ${GOGS_I18N_DATELANG__ru_RU}
+ja-JP = ${GOGS_I18N_DATELANG__ja_JP}
+es-ES = ${GOGS_I18N_DATELANG__es_ES}
+pt-BR = ${GOGS_I18N_DATELANG__pt_BR}
+pl-PL = ${GOGS_I18N_DATELANG__pl_PL}
+bg-BG = ${GOGS_I18N_DATELANG__bg_BG}
+it-IT = ${GOGS_I18N_DATELANG__it_IT}
+
+[other]
+SHOW_FOOTER_BRANDING = ${GOGS_OTHER__SHOW_FOOTER_BRANDING}
