@@ -5,6 +5,10 @@ metadata:
   name: gogs
 objects:
 - apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: gogs
+- apiVersion: v1
   kind: Service
   metadata:
     creationTimestamp: null
