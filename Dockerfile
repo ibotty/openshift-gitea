@@ -1,4 +1,4 @@
-FROM alpine:3.2
+FROM alpine:3.3
 MAINTAINER tob@butter.sh
 
 ENV GOGS_VERSION 0.9.0
@@ -8,7 +8,7 @@ ENV MY_HOME /data/git
 ADD build.sh /tmp/
 
 # Install system utils & Gogs runtime dependencies
-RUN echo "@community http://dl-4.alpinelinux.org/alpine/edge/community" \
+RUN echo "@community http://dl-4.alpinelinux.org/alpine/v3.3/community" \
   | tee -a /etc/apk/repositories \
  && apk -U --no-progress upgrade \
  && apk -U --no-progress add bash ca-certificates curl gettext git linux-pam openssh \
