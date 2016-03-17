@@ -18,7 +18,7 @@ apk -U --no-progress add linux-pam-dev go@community gcc musl-dev
 
 # Init go environment to build Gogs
 cd ${GOPATH}/src/github.com/gogits/gogs
-go get -v -tags "sqlite redis memcache cert pam"
+go get -u -v -tags "sqlite redis memcache cert pam"
 go build -tags "sqlite redis memcache cert pam"
 
 for component in conf public templates gogs; do
