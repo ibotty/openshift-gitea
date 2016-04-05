@@ -14,9 +14,7 @@ if ! test -d /data/gogs; then
 fi
 
 # substitute environment variables
-if ! test -f /data/gogs/conf/app.ini; then
-    envsubst < /app/gogs/openshift/app.ini.template > /data/gogs/conf/app.ini
-fi
+envsubst < /app/gogs/openshift/app.ini.template > /data/gogs/conf/app.ini
 
 if ! test -d $HOME/.ssh; then
     mkdir $HOME/.ssh
