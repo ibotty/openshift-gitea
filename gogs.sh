@@ -28,6 +28,15 @@ if ! test -f $HOME/.ssh/environment; then
     chmod 600 $HOME/.ssh/environment
 fi
 
+# fix up rsa key to match path that built-in server expects
+cd /data
+if [ ! -f ssh/gogs.rsa ] ; then
+    if [ -f ssh/ssh_host_rsa_key ]; then
+        cp ssh/ssh_host_rsa_key ssh/gogs.rsa
+        cp ssh/ssh_host_rsa_key.pub ssh/gogs.rsa.pub
+    fi
+fi
+
 cd /app/gogs
 ln -sf /data/gogs/log  ./log
 ln -sf /data/gogs/data ./data
