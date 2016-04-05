@@ -6,6 +6,7 @@ ENV GOGS_CUSTOM /data/gogs
 ENV MY_UID 1000
 ENV MY_HOME /data/git
 ADD build.sh /tmp/
+ADD gogs.sh opensshd.sh build-app-ini.awk app.ini.container-overrides sshd_config /app/gogs/openshift/
 
 # Install system utils & Gogs runtime dependencies
 RUN echo "@community http://dl-4.alpinelinux.org/alpine/v3.3/community" \
@@ -19,8 +20,6 @@ RUN echo "@community http://dl-4.alpinelinux.org/alpine/v3.3/community" \
  && chmod -R 0777 /data /app \
  && chown -R git:git /data \
  && chmod 0777 /var/run
-
-ADD gogs.sh opensshd.sh app.ini.template app.ini.defaults sshd_config /app/gogs/openshift/
 
 USER git
 

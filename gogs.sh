@@ -6,7 +6,8 @@ USER=$(whoami)
 GOGS_LOG__MODE=console
 
 # load defaults
-. /app/gogs/openshift/app.ini.defaults
+. /app/gogs/openshift/app.ini.container-overrides
+. /app/gogs/openshift/app.ini.vendor-defaults
 
 if ! test -d /data/gogs; then
     mkdir -p /data/gogs/data /data/gogs/conf /data/gogs/log /data/git
