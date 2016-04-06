@@ -10,9 +10,19 @@ GOGSPATH="${GOGITSPATH}/gogs"
 mkdir -p /app/gogs
 
 mkdir -p $GOGITSPATH
-curl -L https://github.com/gogits/gogs/archive/v${GOGS_VERSION}.tar.gz | \
-    tar xzC $GOGITSPATH
-mv ${GOGITSPATH}/gogs-${GOGS_VERSION} $GOGSPATH
+case $GOGS_VERSION in
+    v*)
+        curl -L https://github.com/gogits/gogs/archive/${GOGS_VERSION}.tar.gz | \
+            tar xzC $GOGITSPATH
+        mv ${GOGITSPATH}/gogs-${GOGS_VERSION} $GOGSPATH
+        ;;
+    *)
+        cd $GOGITSPATH
+        git clone https://github.com/gogits/gogs.git
+        cd gogs
+        git checkout $GOGS_VERSION
+        ;;
+esac
 
 # Install build deps
 apk -U --no-progress add linux-pam-dev go@community gcc musl-dev
