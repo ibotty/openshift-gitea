@@ -9,12 +9,12 @@ GOGS_LOG__MODE=console
 . /app/gogs/openshift/app.ini.container-overrides
 . /app/gogs/openshift/app.ini.vendor-defaults
 
-if ! test -d /data/gogs; then
-    mkdir -p /data/gogs/data /data/gogs/conf /data/gogs/log /data/git
-fi
+for dir in data conf log git; do
+    mkdir -p /data/$dir
+done
 
 # substitute environment variables
-envsubst < /app/gogs/openshift/app.ini.template > /data/gogs/conf/app.ini
+envsubst < /app/gogs/openshift/app.ini.template > /data/conf/app.ini
 
 if ! test -d $HOME/.ssh; then
     mkdir $HOME/.ssh
@@ -36,7 +36,7 @@ if [ ! -f ssh/gogs.rsa ] ; then
 fi
 
 cd /app/gogs
-ln -sf /data/gogs/log  ./log
-ln -sf /data/gogs/data ./data
+ln -sf /data/log  ./log
+ln -sf /data/data ./data
 
 exec /app/gogs/gogs web

@@ -2,7 +2,7 @@ FROM alpine:3.3
 MAINTAINER tob@butter.sh
 
 ENV GOGS_VERSION 5ec8ef023057c8250ae9fab6a2fa26951eec848b
-ENV GOGS_CUSTOM /data/gogs
+ENV GOGS_CUSTOM /data
 ENV MY_UID 1000
 ENV MY_HOME /data/git
 ADD build.sh /tmp/
