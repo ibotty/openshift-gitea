@@ -1,10 +1,11 @@
 FROM alpine:3.3
 MAINTAINER tob@butter.sh
 
-ENV GOGS_VERSION v0.9.97
-ENV GOGS_CUSTOM /data
-ENV MY_UID 1000
-ENV MY_HOME /data/git
+ENV GOGS_VERSION=v0.9.97 \
+    GOGS_CUSTOM=/data \
+    MY_UID=1000 \
+    MY_HOME=/data/git
+
 ADD build.sh /tmp/
 ADD gogs.sh opensshd.sh build-app-ini.awk app.ini.container-overrides sshd_config /app/gogs/openshift/
 
