@@ -9,18 +9,18 @@ GOGSPATH="${GOGITSPATH}/gogs"
 
 mkdir -p /app/gogs
 
-mkdir -p $GOGITSPATH
-case $GOGS_VERSION in
+mkdir -p "$GOGITSPATH"
+case "$GOGS_VERSION" in
     v*)
-        curl -L https://github.com/gogits/gogs/archive/${GOGS_VERSION}.tar.gz | \
+        curl -L "https://github.com/gogits/gogs/archive/${GOGS_VERSION}.tar.gz" | \
             tar xzC $GOGITSPATH
-        mv ${GOGITSPATH}/gogs-${GOGS_VERSION} $GOGSPATH
+        mv "${GOGITSPATH}/gogs-${GOGS_VERSION##v}" "$GOGSPATH"
         ;;
     *)
-        cd $GOGITSPATH
+        cd "$GOGITSPATH"
         git clone https://github.com/gogits/gogs.git
         cd gogs
-        git checkout $GOGS_VERSION
+        git checkout "$GOGS_VERSION"
         ;;
 esac
 
@@ -28,20 +28,20 @@ esac
 apk -U --no-progress add linux-pam-dev go@community gcc musl-dev
 
 # Init go environment to build Gogs
-cd $GOGSPATH
+cd "$GOGSPATH"
 go get -v -tags "sqlite redis memcache cert pam"
 go build -tags "sqlite redis memcache cert pam"
 
 for component in conf public templates gogs; do
-    cp -a $GOGSPATH/$component /app/gogs
+    cp -a "$GOGSPATH/$component" /app/gogs
 done
 
 # generate app.ini.vendor-defaults and app.ini.template
 cd /app/gogs/openshift
-awk -f build-app-ini.awk ${GOGSPATH}/conf/app.ini
+awk -f build-app-ini.awk "${GOGSPATH}/conf/app.ini"
 
 # Cleanup GOPATH
-rm -r $GOPATH
+rm -r "$GOPATH"
 
 # Remove build deps
 apk --no-progress del linux-pam-dev go gcc musl-dev
