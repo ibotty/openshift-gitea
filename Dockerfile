@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM alpine:3.5
 MAINTAINER tob@butter.sh
 
 ENV GOGS_VERSION=v0.9.97 \
@@ -10,7 +10,7 @@ ADD build.sh /tmp/
 ADD gogs.sh opensshd.sh build-app-ini.awk app.ini.container-overrides sshd_config /app/gogs/openshift/
 
 # Install system utils & Gogs runtime dependencies
-RUN echo "@community http://dl-4.alpinelinux.org/alpine/v3.3/community" \
+RUN echo "@community http://dl-4.alpinelinux.org/alpine/v3.5/community" \
   | tee -a /etc/apk/repositories \
  && apk -U --no-progress upgrade \
  && apk -U --no-progress add bash ca-certificates curl gettext git linux-pam openssh \
