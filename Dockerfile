@@ -1,7 +1,7 @@
 FROM alpine:3.5
 MAINTAINER tob@butter.sh
 
-ENV GOGS_VERSION=v0.9.97 \
+ENV GOGS_VERSION=v0.10.18 \
     GOGS_CUSTOM=/data \
     MY_UID=1000 \
     MY_HOME=/data/git
