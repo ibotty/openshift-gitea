@@ -5,7 +5,7 @@
 }
 
 /^[a-zA-Z_]+ =/ {
-    key_var = "GOGS_" section $1
+    key_var = "GITEA_" section $1
     printf "%s = ${%s}\n", $1, key_var > "app.ini.template"
 
     # cut out var assignment

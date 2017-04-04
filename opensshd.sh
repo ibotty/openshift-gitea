@@ -14,4 +14,4 @@ if ! test -d /data/ssh; then
     chmod 600 /data/ssh/*
 fi
 
-exec /usr/sbin/sshd -Def /app/gogs/openshift/sshd_config
+exec /usr/sbin/sshd -Def /app/gitea/openshift/sshd_config

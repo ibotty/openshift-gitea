@@ -1,44 +1,45 @@
-#!/bin/sh
+#!/bin/sH
 set -ex
 
 # Set temp environment vars
 export GOPATH=/tmp/go
 export PATH=${PATH}:${GOPATH}/bin
-GOGITSPATH="${GOPATH}/src/github.com/gogits"
-GOGSPATH="${GOGITSPATH}/gogs"
+GITEAREPO="https://github.com/go-gitea/gitea.git"
+GITEAPATH="${GOPATH}/src/github.com/go-gitea"
+GITEAPATH="${GITEAPATH}/gitea"
 
-mkdir -p /app/gogs
+mkdir -p /app/gitea
 
-mkdir -p "$GOGITSPATH"
-case "$GOGS_VERSION" in
+mkdir -p "$GITEAPATH"
+case "$GITEA_VERSION" in
     v*)
-        curl -L "https://github.com/gogits/gogs/archive/${GOGS_VERSION}.tar.gz" | \
-            tar xzC $GOGITSPATH
-        mv "${GOGITSPATH}/gogs-${GOGS_VERSION##v}" "$GOGSPATH"
+        curl -L "https://github.com/go-gitea/gitea/archive/${GITEA_VERSION}.tar.gz" | \
+            tar xzC $GITEAPATH
+        mv "${GITEAPATH}/gitea-${GITEA_VERSION##v}" "$GITEAPATH"
         ;;
     *)
-        cd "$GOGITSPATH"
-        git clone https://github.com/gogits/gogs.git
-        cd gogs
-        git checkout "$GOGS_VERSION"
+        cd "$GITEAPATH"
+        git clone "$GITEAREPO"
+        cd gitea
+        git checkout "$GITEA_VERSION"
         ;;
 esac
 
 # Install build deps
 apk -U --no-progress add linux-pam-dev go@community gcc musl-dev
 
-# Init go environment to build Gogs
-cd "$GOGSPATH"
+# Init go environment to build Gitea
+cd "$GITEAPATH"
 go get -v -tags "sqlite redis memcache cert pam"
 go build -tags "sqlite redis memcache cert pam"
 
-for component in conf public templates gogs; do
-    cp -a "$GOGSPATH/$component" /app/gogs
+for component in conf public templates gitea; do
+    cp -a "$GITEAPATH/$component" /app/gitea
 done
 
 # generate app.ini.vendor-defaults and app.ini.template
-cd /app/gogs/openshift
-awk -f build-app-ini.awk "${GOGSPATH}/conf/app.ini"
+cd /app/gitea/openshift
+awk -f build-app-ini.awk "${GITEAPATH}/conf/app.ini"
 
 # Cleanup GOPATH
 rm -r "$GOPATH"
@@ -47,4 +48,4 @@ rm -r "$GOPATH"
 apk --no-progress del linux-pam-dev go gcc musl-dev
 
 
-echo "export GOGS_CUSTOM=${GOGS_CUSTOM}" >> /etc/profile
+echo "export GITEA_CUSTOM=${GITEA_CUSTOM}" >> /etc/profile
